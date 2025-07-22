@@ -14,11 +14,22 @@ namespace content_management_system.Pages
     public partial class TablePage : Page
     {
         public ObservableCollection<Obrenovic> Obrenovici { get; set; }
+        
         private MainWindow mainWindow;
 
-        public TablePage()
+        private User currentUser { get; set; }
+
+        public TablePage(User user)
         {
             InitializeComponent();
+
+            currentUser = user;
+
+            if (user.Role == UserRole.Admin)
+            {
+                btn_Add.Visibility = Visibility.Visible;
+                btn_Delete.Visibility = Visibility.Visible;
+            }
             mainWindow = (MainWindow)Application.Current.MainWindow;
             Obrenovici = mainWindow.Obrenovici;
             this.DataContext = this;
@@ -71,20 +82,35 @@ namespace content_management_system.Pages
             }
         }
 
+        private void NameHyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Hyperlink hyperlink && hyperlink.DataContext is Obrenovic obrenovic)
+            {
+                var navService = mainWindow?.MainFrame.NavigationService;
+
+                if (navService == null) 
+                    return;
+
+                if (currentUser.Role == UserRole.Admin)
+                {
+                    // var editPage = new EditObrenovicPage(obrenovic, navService);
+                    // navService.Navigate(editPage);
+                }
+                else
+                {
+                    var previewPage = new PreviewPage(obrenovic, navService);
+                    navService.Navigate(previewPage);
+                }
+            }
+        }
+
+
         private void SelectAllCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             foreach (var item in Obrenovici)
                 item.IsSelected = true;
 
             ObrenoviciDataGrid.Items.Refresh();
-        }
-
-        private void NameHyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Hyperlink hyperlink && hyperlink.DataContext is Obrenovic o)
-            {
-                MessageBox.Show($"Otvaranje biografije: {o.Name}\n(RTF: {o.RtfPath})");
-            }
         }
 
         private void SelectAllCheckBox_Click(object sender, RoutedEventArgs e)

@@ -56,7 +56,7 @@ namespace content_management_system.Pages
                 return;
             }
 
-            NavigationService?.Navigate(new TablePage());
+            NavigationService?.Navigate(new TablePage(user));
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
