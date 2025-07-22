@@ -10,10 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data\Users.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Data\Users.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="Helpers\" />
     <Folder Include="TextFiles\" />
-    <Folder Include="Pages\" />
   </ItemGroup>
 
 </Project>

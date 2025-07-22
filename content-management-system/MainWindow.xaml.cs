@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using content_management_system.Pages;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,12 @@ namespace content_management_system
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new LoginPage());
+        }
+
+        public void Logout()
+        {
+            MainFrame.Navigate(new LoginPage());
         }
     }
 }
