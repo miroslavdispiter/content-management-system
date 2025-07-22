@@ -35,24 +35,17 @@ namespace content_management_system.Pages
             this.DataContext = this;
         }
 
-        private void SaveDataToXml()
+        public void SaveDataToXml()
         {
             DataIO io = new DataIO();
-            string filePath = "Data/Obrenovici.xml";
-            io.SerializeObject(Obrenovici.ToList(), filePath);
-        }
-
-        private void RowCheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is CheckBox checkBox && checkBox.DataContext is Obrenovic obrenovic)
-            {
-                obrenovic.IsSelected = checkBox.IsChecked == true;
-            }
+            string xmlPath = "Data/Obrenovici.xml";
+            io.SerializeObject(Obrenovici.ToList(), xmlPath);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Add page not implemented yet.");
+            var addPage = new AddObrenovicPage(this);
+            mainWindow.MainFrame.Navigate(addPage);
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -101,6 +94,14 @@ namespace content_management_system.Pages
                     var previewPage = new PreviewPage(obrenovic, navService);
                     navService.Navigate(previewPage);
                 }
+            }
+        }
+
+        private void RowCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox checkBox && checkBox.DataContext is Obrenovic obrenovic)
+            {
+                obrenovic.IsSelected = checkBox.IsChecked == true;
             }
         }
 

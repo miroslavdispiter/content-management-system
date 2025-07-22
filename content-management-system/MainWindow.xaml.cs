@@ -1,18 +1,10 @@
 ﻿using content_management_system.Helpers;
 using content_management_system.Models;
 using content_management_system.Pages;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace content_management_system
 {
@@ -30,23 +22,18 @@ namespace content_management_system
             MainFrame.Navigate(new LoginPage());
         }
 
-        public void Logout()
-        {
-            MainFrame.Navigate(new LoginPage());
-        }
-
         private void LoadFromXml()
         {
             string xmlPath = "Data/Obrenovici.xml";
 
             if (!File.Exists(xmlPath))
             {
-                MessageBox.Show("XML fajl nije pronadjen: " + xmlPath, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"XML fajl nije pronadjen: {xmlPath}", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
                 Obrenovici = new ObservableCollection<Obrenovic>();
                 return;
             }
 
-            DataIO io = new DataIO();
+            var io = new DataIO();
             var list = io.DeSerializeObject<List<Obrenovic>>(xmlPath);
 
             if (list != null)
@@ -57,6 +44,11 @@ namespace content_management_system
             {
                 Obrenovici = new ObservableCollection<Obrenovic>();
             }
+        }
+
+        public void Logout()
+        {
+            MainFrame.Navigate(new LoginPage());
         }
     }
 }

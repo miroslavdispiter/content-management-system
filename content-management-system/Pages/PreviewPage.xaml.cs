@@ -30,7 +30,7 @@ namespace content_management_system.Pages
             this.navService = navigationService;
         }
 
-        private void Back_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
             navService.GoBack();
         }

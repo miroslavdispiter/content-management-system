@@ -2,18 +2,10 @@
 using content_management_system.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace content_management_system.Pages
 {
@@ -31,10 +23,10 @@ namespace content_management_system.Pages
 
         private void LoadUsers()
         {
-            DataIO io = new DataIO();
-            string filePath = "Data/Users.xml";
+            string xmlPath = "Data/Users.xml";
 
-            _users = io.DeSerializeObject<List<User>>(filePath);
+            DataIO io = new DataIO();
+            _users = io.DeSerializeObject<List<User>>(xmlPath);
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
