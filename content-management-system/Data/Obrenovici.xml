@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ArrayOfObrenovic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Obrenovic>
+		<Name>Miloš Obrenović</Name>
+		<DateOfBirth>1780</DateOfBirth>
+		<ImgPath>Images/milos.jpg</ImgPath>
+		<RtfPath>TextFiles/milos.rtf</RtfPath>
+		<DateAdded>22.07.2025</DateAdded>	
+	</Obrenovic>
+	<Obrenovic>
+		<Name>Mihailo Obrenović</Name>
+		<DateOfBirth>1823</DateOfBirth>
+		<ImgPath>Images/mihailo.jpg</ImgPath>
+		<RtfPath>TextFiles/mihailo.rtf</RtfPath>
+		<DateAdded>22.07.2025</DateAdded>
+	</Obrenovic>
+	<Obrenovic>
+		<Name>Milan Obrenović</Name>
+		<DateOfBirth>1819</DateOfBirth>
+		<ImgPath>Images/milan.jpg</ImgPath>
+		<RtfPath>TextFiles/milan.rtf</RtfPath>
+		<DateAdded>22.07.2025</DateAdded>
+	</Obrenovic>
+</ArrayOfObrenovic>

@@ -9,4 +9,11 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="TextFiles\" />
+    <Folder Include="Pages\" />
+  </ItemGroup>
+
 </Project>
