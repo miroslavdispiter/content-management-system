@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace content_management_system.Models
 {
     public class Obrenovic
     {
         public string Name { get; set; }
-
         public int DateOfBirth { get; set; }
-
         public string ImgPath { get; set; }
-
         public string RtfPath { get; set; }
-
         public string DateAdded { get; set; }
+        public bool IsSelected { get; set; }
 
         public Obrenovic()
         {
@@ -28,7 +27,7 @@ namespace content_management_system.Models
             DateAdded = DateTimeOffset.Now.ToString("dd-MM-yyyy");
         }
 
-        public Obrenovic(string name, int dateOfBirth, string imgPath, string rtfPath, string timeAdded)
+        public Obrenovic(string name, int dateOfBirth, string imgPath, string rtfPath)
         {
             Name = name;
             DateOfBirth = dateOfBirth;

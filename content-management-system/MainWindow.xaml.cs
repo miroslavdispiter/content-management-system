@@ -1,4 +1,8 @@
-﻿using content_management_system.Pages;
+﻿using content_management_system.Helpers;
+using content_management_system.Models;
+using content_management_system.Pages;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,15 +21,42 @@ namespace content_management_system
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Obrenovic> Obrenovici { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            LoadFromXml();
             MainFrame.Navigate(new LoginPage());
         }
 
         public void Logout()
         {
             MainFrame.Navigate(new LoginPage());
+        }
+
+        private void LoadFromXml()
+        {
+            string xmlPath = "Data/Obrenovici.xml";
+
+            if (!File.Exists(xmlPath))
+            {
+                MessageBox.Show("XML fajl nije pronadjen: " + xmlPath, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                Obrenovici = new ObservableCollection<Obrenovic>();
+                return;
+            }
+
+            DataIO io = new DataIO();
+            var list = io.DeSerializeObject<List<Obrenovic>>(xmlPath);
+
+            if (list != null)
+            {
+                Obrenovici = new ObservableCollection<Obrenovic>(list);
+            }
+            else
+            {
+                Obrenovici = new ObservableCollection<Obrenovic>();
+            }
         }
     }
 }

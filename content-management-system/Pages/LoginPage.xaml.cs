@@ -34,7 +34,7 @@ namespace content_management_system.Pages
             DataIO io = new DataIO();
             string filePath = "Data/Users.xml";
 
-            _users = io.DeSerializeObject<List<User>>(filePath) ?? new List<User>();
+            _users = io.DeSerializeObject<List<User>>(filePath);
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -56,7 +56,7 @@ namespace content_management_system.Pages
                 return;
             }
 
-            //NavigationService?.Navigate(new TablePage(user));
+            NavigationService?.Navigate(new TablePage());
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
