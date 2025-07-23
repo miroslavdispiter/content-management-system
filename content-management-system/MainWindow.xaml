@@ -15,7 +15,7 @@
         MouseLeftButtonDown="Window_MouseLeftButtonDown">
 
     <Canvas>
-        <Path Fill="#f5f0e6" Stroke="DarkGray" StrokeThickness="2">
+        <Path Fill="#f0dab4" Stroke="DarkGray" StrokeThickness="2">
             <Path.Data>
                 <PathGeometry>
                     <PathFigure StartPoint="80,0">
@@ -32,11 +32,32 @@
             </Path.Data>
         </Path>
 
+        <Image Source="../../Images/shield1.png"
+               Width="55" Height="50"
+               Canvas.Left="490"
+               Canvas.Top="40" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top"/>
+
+        <Image Source="../../Images/shield2.png"
+               Width="55" Height="50"
+               Canvas.Left="358" 
+               Canvas.Top="40"
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top"/>
+
+        <Image Source="../../Images/shieldxy-removebg-preview.png"
+               Width="95" Height="70"
+               Canvas.Left="424"
+               Canvas.Top="32"
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Center"/>
+
         <Frame x:Name="MainFrame"
                Canvas.Left="20"
-               Canvas.Top="20"
+               Canvas.Top="80"
                Width="860"
-               Height="560"
+               Height="500"
                NavigationUIVisibility="Hidden"
                Background="Transparent" />
     </Canvas>

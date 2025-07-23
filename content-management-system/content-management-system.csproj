@@ -15,6 +15,10 @@
     <None Remove="Images\mihailo_obrenovic.jpg" />
     <None Remove="Images\milan_obrenovic.jpg" />
     <None Remove="Images\milos_obrenovic.jpg" />
+    <None Remove="Images\shield1.png" />
+    <None Remove="Images\shield1.webp" />
+    <None Remove="Images\shield2.png" />
+    <None Remove="Images\shieldxy-removebg-preview.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +35,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\milos_obrenovic.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\shield1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\shield2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\shieldxy-removebg-preview.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -5,8 +5,45 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:content_management_system.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
       Title="TablePage">
+
+    <Page.Resources>
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#F5F5DC"/>
+            <Setter Property="Foreground" Value="#C9B037"/>
+            <Setter Property="BorderBrush" Value="#C9B037"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="Transparent"/>
+            <Setter Property="VerticalGridLinesBrush" Value="Transparent"/>
+        </Style>
+        
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F5F5DC"/>
+            <Setter Property="Foreground" Value="#C9B037"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="DataGridRow">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#F5F5DC"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#EFEFC3"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#C9B037"/>
+                    <Setter Property="Foreground" Value="#EFEFC3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Page.Resources>
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -46,10 +83,14 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Ime" Width="150">
+                <DataGridTemplateColumn 
+                    Header="Name" 
+                    Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock 
+                                HorizontalAlignment="Center" 
+                                VerticalAlignment="Center">
                                 <Hyperlink Click="NameHyperlink_Click">
                                     <Run Text="{Binding Name}" />
                                 </Hyperlink>
@@ -58,43 +99,158 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Slika" Width="*">
+                <DataGridTemplateColumn 
+                    Header="Image"
+                    Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding ImgPath}" Stretch="UniformToFill"/>
+                            <Image 
+                                Source="{Binding ImgPath}" 
+                                Stretch="Uniform" 
+                                MaxWidth="100"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTextColumn Header="Datum rođenja" Binding="{Binding DateOfBirth}" Width="150" />
+                <DataGridTemplateColumn 
+                    Header="Date Added" 
+                    Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock 
+                                Text="{Binding DateAdded}"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                                Foreground="#C9B037"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
-                <DataGridTextColumn Header="Datum dodavanja" Binding="{Binding DateAdded}" Width="150" />
-
+                <DataGridTemplateColumn 
+                    Header="Date of Birth" 
+                    Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock 
+                                Text="{Binding DateOfBirth}"
+                                HorizontalAlignment="Center"
+                                TextAlignment="Center"
+                                Foreground="#C9B037"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+        <StackPanel 
+            Grid.Row="2" 
+            Orientation="Horizontal" 
+            HorizontalAlignment="Right" 
+            Margin="0,10,50,0">
             <Button
                 x:Name="btn_Add"
                 Content="Add" 
-                Width="80" 
-                Margin="5" 
+                Width="120" 
+                Height="45"
+                Margin="5,4,20,0"
                 Visibility="Hidden"
-                Click="AddButton_Click"/>
-            <Button 
+                Click="AddButton_Click"
+                Background="#800000"
+                Foreground="#F5F5DC"
+                FontFamily="Agency FB"
+                FontSize="22"
+                BorderBrush="#C9B037"
+                BorderThickness="2"
+                Padding="5"
+                Cursor="Hand"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                                <ContentPresenter 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button
                 x:Name="btn_Delete"
                 Content="Delete" 
-                Width="80" 
-                Margin="5" 
+                Width="120" 
+                Height="45"
+                Margin="5,4,20,0"
                 Visibility="Hidden"
-                Click="DeleteButton_Click"/>
-            <Button 
+                Click="DeleteButton_Click"
+                Background="#800000"
+                Foreground="#F5F5DC"
+                FontFamily="Agency FB"
+                FontSize="22"
+                BorderBrush="#C9B037"
+                BorderThickness="2"
+                Padding="5,4,20,0"
+                Cursor="Hand"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                                <ContentPresenter 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button
                 x:Name="btn_Logout"
                 Content="Logout" 
-                Width="80" 
-                Margin="5" 
-                Click="LogoutButton_Click"/>
+                Width="120" 
+                Height="45"
+                Margin="5,4,0,0"
+                Click="LogoutButton_Click"
+                Background="#800000"
+                Foreground="#F5F5DC"
+                FontFamily="Agency FB"
+                FontSize="22"
+                BorderBrush="#C9B037"
+                BorderThickness="2"
+                Padding="5"
+                Cursor="Hand"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"> 
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                                <ContentPresenter 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

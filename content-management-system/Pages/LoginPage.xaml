@@ -9,75 +9,176 @@
       d:DesignWidth="800"
       Title="LoginPage">
 
-    <Grid Margin="40">
+    <Grid 
+        Margin="40" 
+        VerticalAlignment="Center" 
+        HorizontalAlignment="Center">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <TextBlock
             Grid.Row="0"
-            Text="LOGIN"
-            FontSize="36"
+            Text="LOG IN"
+            FontSize="40"
+            FontFamily="Agency FB"
             FontWeight="Bold"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Foreground="#C9B037"
+            Margin="0,0,0,20"/>
 
         <TextBlock
             Grid.Row="1"
             Text="Username:"
             FontWeight="SemiBold"
-            FontSize="20"
+            FontFamily="Agency FB"
+            FontSize="22"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="10,0,0,0"/>
+            Margin="0,0,0,0"
+            Foreground="#C9B037"/>
 
         <TextBox
             x:Name="UsernameTextBox"
             Grid.Row="2"
-            FontSize="16"
-            Height="35"
+            FontSize="19"
+            FontFamily="Agency FB"
+            Height="45"
             Margin="0,0,0,10"
-            HorizontalAlignment="Stretch"/>
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Background="#F0E9D5"
+            Foreground="#2F2F2F"
+            BorderBrush="#C9B037"
+            BorderThickness="2"
+            Padding="5"
+            VerticalContentAlignment="Center">
+        </TextBox>
+        
+        <TextBlock
+            x:Name="UsernameError"
+            Grid.Row="3"
+            Text=""
+            FontSize="14"
+            FontFamily="Agency FB"
+            Foreground="#FF0000"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="10,5,0,0"/>
 
+        <!-- Password Label -->
         <TextBlock
             Grid.Row="4"
             Text="Password:"
             FontWeight="SemiBold"
-            FontSize="20"
+            FontSize="22"
+            FontFamily="Agency FB"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="10,0,0,0"/>
+            Margin="0,0,0,0"
+            Foreground="#C9B037"/>
 
+        <!-- PasswordBox -->
         <PasswordBox
             x:Name="PasswordBox"
             Grid.Row="5"
-            FontSize="16"
-            Height="35"
+            FontSize="19"
+            FontFamily="Agency FB"
+            Height="45"
             Margin="0,0,0,10"
-            HorizontalAlignment="Stretch"/>
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center"
+            Background="#F0E9D5"
+            Foreground="#2F2F2F"
+            BorderBrush="#C9B037"
+            BorderThickness="2"
+            Padding="5"
+            VerticalContentAlignment="Center"/>
 
+        <TextBlock
+            x:Name="PasswordError"
+            Grid.Row="6"
+            Text=""
+            FontSize="16"
+            FontFamily="Agency FB"
+            Foreground="#FF0000"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="10,5,0,0"/>
+        
         <StackPanel
             Grid.Row="7"
             Orientation="Horizontal"
-            HorizontalAlignment="Right"
+            HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Margin="0,10,0,0">
+            Margin="0,20,0,0">
             <Button
                 Content="Login"
-                Width="100"
-                Margin="0,0,10,0"
-                Click="Login_Click"/>
+                Width="120"
+                Height="45"
+                Margin="0,0,20,0"
+                Click="Login_Click"
+                Background="#800000"
+                Foreground="#F5F5DC"
+                FontFamily="Agency FB"
+                FontSize="22"
+                BorderBrush="#C9B037"
+                BorderThickness="2"
+                Padding="5"
+                Cursor="Hand"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
             <Button
                 Content="Exit"
-                Width="100"
-                Click="Exit_Click"/>
+                Width="120"
+                Height="45"
+                Click="Exit_Click"
+                Background="#800000"
+                Foreground="#F5F5DC"
+                FontFamily="Agency FB"
+                FontSize="22"
+                BorderBrush="#C9B037"
+                BorderThickness="2"
+                Padding="5"
+                Cursor="Hand"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>
