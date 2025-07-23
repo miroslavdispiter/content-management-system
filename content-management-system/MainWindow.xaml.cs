@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
+using System.Windows.Input;
 
 namespace content_management_system
 {
@@ -44,6 +45,11 @@ namespace content_management_system
             {
                 Obrenovici = new ObservableCollection<Obrenovic>();
             }
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
 
         public void Logout()

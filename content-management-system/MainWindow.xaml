@@ -5,10 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:content_management_system"
         mc:Ignorable="d"
-        Title="MainWindow" 
-        Height="450" 
-        Width="800">
-    <Frame 
-        x:Name="MainFrame"
-        NavigationUIVisibility="Hidden"/>
+        Title="MainWindow"
+        Width="900"
+        Height="600"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Canvas>
+        <Path Fill="#f5f0e6" Stroke="DarkGray" StrokeThickness="2">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="80,0">
+                        <LineSegment Point="0,80" />
+                        <LineSegment Point="0,520" />
+                        <LineSegment Point="80,600" />
+                        <LineSegment Point="820,600" />
+                        <LineSegment Point="900,520" />
+                        <LineSegment Point="900,80" />
+                        <LineSegment Point="820,0" />
+                        <LineSegment Point="80,0" />
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <Frame x:Name="MainFrame"
+               Canvas.Left="20"
+               Canvas.Top="20"
+               Width="860"
+               Height="560"
+               NavigationUIVisibility="Hidden"
+               Background="Transparent" />
+    </Canvas>
 </Window>
