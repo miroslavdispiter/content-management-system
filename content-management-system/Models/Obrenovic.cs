@@ -39,7 +39,7 @@ namespace content_management_system.Models
         }
 
         // ovaj property je dodat jer mi nije prikazivalo sliku kad sam koristio relativnu putanju
-        public BitmapImage ImageSource
+        /*public BitmapImage ImageSource
         {
             get
             {
@@ -56,6 +56,6 @@ namespace content_management_system.Models
                     return null;
                 }
             }
-        }
+        }*/
     }
 }

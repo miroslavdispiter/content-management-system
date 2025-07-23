@@ -44,7 +44,7 @@ namespace content_management_system.Pages
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var addPage = new AddObrenovicPage(this);
+            var addPage = new AddEditObrenovicPage(this);
             mainWindow.MainFrame.Navigate(addPage);
         }
 
@@ -86,8 +86,8 @@ namespace content_management_system.Pages
 
                 if (currentUser.Role == UserRole.Admin)
                 {
-                    // var editPage = new EditObrenovicPage(obrenovic, navService);
-                    // navService.Navigate(editPage);
+                    var editPage = new AddEditObrenovicPage(this, obrenovic);
+                    navService.Navigate(editPage);
                 }
                 else
                 {

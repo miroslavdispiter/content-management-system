@@ -61,7 +61,7 @@
                 <DataGridTemplateColumn Header="Slika" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding ImageSource}" Stretch="UniformToFill"/>
+                            <Image Source="{Binding ImgPath}" Stretch="UniformToFill"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
