@@ -90,8 +90,7 @@
             Foreground="#2F2F2F" 
             BorderBrush="#C9B037"
             BorderThickness="2" 
-            InputScope="Number"
-            TextChanged="TxtBirthYear_TextChanged"/>
+            InputScope="Number"/>
 
         <Image 
             x:Name="imgPreview" 

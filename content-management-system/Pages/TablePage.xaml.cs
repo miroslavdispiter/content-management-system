@@ -38,7 +38,7 @@ namespace content_management_system.Pages
         public void SaveDataToXml()
         {
             DataIO io = new DataIO();
-            string xmlPath = "Data/Obrenovici.xml";
+            string xmlPath = "../../../Data/Obrenovici.xml";
             io.SerializeObject(Obrenovici.ToList(), xmlPath);
         }
 
@@ -71,7 +71,7 @@ namespace content_management_system.Pages
 
                 SaveDataToXml();
                 ObrenoviciDataGrid.Items.Refresh();
-                //MessageBox.Show("Uspešno obrisani selektovani članovi.", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Uspešno obrisani selektovani članovi.", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
                 //Ovde staviti toast notification
             }
         }
@@ -104,15 +104,6 @@ namespace content_management_system.Pages
             {
                 obrenovic.IsSelected = checkBox.IsChecked == true;
             }
-        }
-
-
-        private void SelectAllCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            foreach (var item in Obrenovici)
-                item.IsSelected = true;
-
-            ObrenoviciDataGrid.Items.Refresh();
         }
 
         private void SelectAllCheckBox_Click(object sender, RoutedEventArgs e)

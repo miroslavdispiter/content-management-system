@@ -23,7 +23,7 @@ namespace content_management_system.Pages
 
         private void LoadUsers()
         {
-            string xmlPath = "Data/Users.xml";
+            string xmlPath = "../../../Data/Users.xml";
 
             DataIO io = new DataIO();
             _users = io.DeSerializeObject<List<User>>(xmlPath);

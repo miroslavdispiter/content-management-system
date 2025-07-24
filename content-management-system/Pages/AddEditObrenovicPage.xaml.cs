@@ -66,7 +66,7 @@ namespace content_management_system.Pages
             }
         }
 
-        private void TxtBirthYear_TextChanged(object sender, TextChangedEventArgs e)
+        /*private void TxtBirthYear_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (int.TryParse(txtBirthYear.Text, out int birthYear))
             {
@@ -79,7 +79,7 @@ namespace content_management_system.Pages
             {
                 MessageBox.Show("Unesite samo brojeve.", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
+        }*/
 
         private void ColorPickerText_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
@@ -112,7 +112,7 @@ namespace content_management_system.Pages
             }
         }
 
-        private void RtbDescription_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        private void RtbDescription_KeyUp(object sender, KeyEventArgs e)
         {
             UpdateWordCount();
         }
@@ -133,9 +133,15 @@ namespace content_management_system.Pages
                 return;
             }
 
+            if (birthYear < 1700 || birthYear > DateTime.Now.Year)
+            {
+                MessageBox.Show("Unesite validnu godinu rođenja (1700 - " + DateTime.Now.Year + ").", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             string name = txtName.Text.Trim();
 
-            string rtfDirectory = "TextFiles";
+            string rtfDirectory = "../../../TextFiles";
             Directory.CreateDirectory(rtfDirectory);
             string formattedName = name.ToLower().Replace(" ", "_");
             string rtfFileName = $"{formattedName}.rtf";
@@ -155,6 +161,11 @@ namespace content_management_system.Pages
                 if (!string.IsNullOrWhiteSpace(_selectedImagePath))
                 {
                     _obrenovicZaIzmenu.ImgPath = _selectedImagePath;
+                }
+                else
+                {
+                    MessageBox.Show("Unesite sliku.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
                 }
 
                 _tablePage.SaveDataToXml();

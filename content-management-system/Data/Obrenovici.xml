@@ -1,24 +1,35 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfObrenovic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<Obrenovic>
-		<Name>Miloš Obrenović</Name>
-		<DateOfBirth>1780</DateOfBirth>
-		<ImgPath>../../Images/milos_obrenovic.jpg</ImgPath>
-		<RtfPath>../../TextFiles/milos.rtf</RtfPath>
-		<DateAdded>22-07-2025</DateAdded>	
-	</Obrenovic>
-	<Obrenovic>
-		<Name>Mihailo Obrenović</Name>
-		<DateOfBirth>1823</DateOfBirth>
-		<ImgPath>../../Images/mihailo_obrenovic.jpg</ImgPath>
-		<RtfPath>../../TextFiles/mihailo.rtf</RtfPath>
-		<DateAdded>22-07-2025</DateAdded>
-	</Obrenovic>
-	<Obrenovic>
-		<Name>Milan Obrenović</Name>
-		<DateOfBirth>1819</DateOfBirth>
-		<ImgPath>../../Images/milan_obrenovic.jpg</ImgPath>
-		<RtfPath>../../TextFiles/milan.rtf</RtfPath>
-		<DateAdded>22-07-2025</DateAdded>
-	</Obrenovic>
+  <Obrenovic>
+    <Name>Miloš Obrenović</Name>
+    <DateOfBirth>1780</DateOfBirth>
+    <ImgPath>../../../Images/milos_obrenovic.jpg</ImgPath>
+    <RtfPath>../../../TextFiles/milos_obrenovic.rtf</RtfPath>
+    <DateAdded>22-07-2025</DateAdded>
+    <IsSelected>false</IsSelected>
+  </Obrenovic>
+  <Obrenovic>
+    <Name>Mihailo Obrenović</Name>
+    <DateOfBirth>1823</DateOfBirth>
+    <ImgPath>../../../Images/mihailo_obrenovic.jpg</ImgPath>
+    <RtfPath>../../../TextFiles/mihailo_obrenovic.rtf</RtfPath>
+    <DateAdded>22-07-2025</DateAdded>
+    <IsSelected>false</IsSelected>
+  </Obrenovic>
+  <Obrenovic>
+    <Name>Milan Obrenović</Name>
+    <DateOfBirth>1819</DateOfBirth>
+    <ImgPath>../../../Images/milan_obrenovic.jpg</ImgPath>
+    <RtfPath>../../../TextFiles/milan_obrenovic.rtf</RtfPath>
+    <DateAdded>22-07-2025</DateAdded>
+    <IsSelected>false</IsSelected>
+  </Obrenovic>
+  <Obrenovic>
+    <Name>Miroslav Obrenovic</Name>
+    <DateOfBirth>1815</DateOfBirth>
+    <ImgPath>C:\Users\miros\Documents\CV's\cv - final pic.jpg</ImgPath>
+    <RtfPath>../../../TextFiles\miroslav_obrenovic.rtf</RtfPath>
+    <DateAdded>24-07-2025</DateAdded>
+    <IsSelected>false</IsSelected>
+  </Obrenovic>
 </ArrayOfObrenovic>
