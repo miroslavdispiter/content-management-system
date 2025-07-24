@@ -10,24 +10,131 @@
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="0,0,0,10">
-            <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding Name}" TextAlignment="Center"/>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1" Margin="10">
-            <Image Source="{Binding ImgPath}" Width="150" Height="150" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-            <TextBlock Text="Datum rodjenja:" FontWeight="Bold"/>
-            <TextBlock Text="{Binding DateOfBirth}" Margin="0,0,0,10"/>
+        <TextBlock
+            Text="{Binding Name}"
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="0,12,25,0"
+            Foreground="#C9B037"
+            FontSize="36" 
+            FontWeight="Bold"
+            FontFamily="Agency FB"
+            TextAlignment="Center"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
 
-            <TextBlock Text="Datum dodavanja:" FontWeight="Bold"/>
-            <TextBlock Text="{Binding DateAdded}"/>
-        </StackPanel>
+        <Image 
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            Source="{Binding ImgPath}" 
+            Margin="100,0,0,0"
+            Width="350" 
+            Height="275" 
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Stretch="Uniform"/>
 
-        <Button Grid.Row="2" Content="Nazad" Width="80" HorizontalAlignment="Center" Margin="0,10,0,0" Click="Back_Click"/>
+        <TextBlock
+            Text="Year of Birth:" 
+            Grid.Row="1"
+            Grid.Column="0"
+            Foreground="#C9B037"
+            FontWeight="Bold"
+            FontSize="24"
+            FontFamily="Agency FB"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Margin="0,0,100,0"/>
+        <TextBlock 
+            Text="{Binding DateOfBirth}"
+            Grid.Row="1"
+            Grid.Column="0"
+            Foreground="#C9B037"
+            FontWeight="Bold"
+            FontSize="24"
+            FontFamily="Agency FB"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Margin="75,0,0,0"/>
+
+        <TextBlock 
+            Text="Date Added:" 
+            Grid.Row="1"
+            Grid.Column="0"
+            Foreground="#C9B037"
+            FontWeight="Bold"
+            FontSize="24"
+            FontFamily="Agency FB"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="0,0,115,0"/>
+        <TextBlock 
+            Text="{Binding DateAdded}"
+            Grid.Row="1"
+            Grid.Column="0"
+            Foreground="#C9B037"
+            FontWeight="Bold"
+            FontSize="24"
+            FontFamily="Agency FB"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Margin="110,0,0,0"/>
+
+        <TextBlock 
+            Text="Description:" 
+            Grid.Row="1"
+            Grid.Column="0"
+            Foreground="#C9B037"
+            FontWeight="Bold"
+            FontSize="24"
+            FontFamily="Agency FB"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"
+            Margin="0,0,110,0"/>
+
+        <RichTextBox 
+            x:Name="rtbDescription" 
+            Grid.Row="2"
+            Grid.Column="0"
+            Width="280"
+            Height="120"
+            Margin="0,0,40,80"
+            Background="#F0E9D5"
+            Foreground="#2F2F2F"
+            BorderBrush="#C9B037"
+            BorderThickness="2"
+            FontFamily="Times New Roman"
+            FontSize="14"
+            IsReadOnly="True"
+            IsDocumentEnabled="False"/>
+
+        <Button 
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Content="Back"
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Bottom"
+            Margin="0,0,0,30"
+            Width="100"
+            Height="40"
+            Background="#800000"
+            Foreground="#F5F5DC"
+            BorderBrush="#C9B037"
+            BorderThickness="1"
+            Cursor="Hand"
+            FontFamily="Agency FB"
+            FontSize="22"
+            Click="Back_Click"/>
     </Grid>
 </Page>

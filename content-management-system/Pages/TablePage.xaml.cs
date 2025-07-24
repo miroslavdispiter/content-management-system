@@ -59,7 +59,7 @@ namespace content_management_system.Pages
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show($"Da li ste sigurni da želite da obrišete {itemsToDelete.Count} selektovanih članova dinastije?", "Potvrda brisanja", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete {itemsToDelete.Count} selected dynasty members?", "Confirm deletion", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
@@ -71,7 +71,8 @@ namespace content_management_system.Pages
 
                 SaveDataToXml();
                 ObrenoviciDataGrid.Items.Refresh();
-                MessageBox.Show("Uspešno obrisani selektovani članovi.", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
+                //MessageBox.Show("Uspešno obrisani selektovani članovi.", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
+                //Ovde staviti toast notification
             }
         }
 

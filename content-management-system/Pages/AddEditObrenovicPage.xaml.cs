@@ -1,15 +1,26 @@
 ﻿using content_management_system.Models;
+using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
-using Microsoft.Win32;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace content_management_system.Pages
 {
+    /// <summary>
+    /// Interaction logic for AddEditObrenovicPage.xaml
+    /// </summary>
     public partial class AddEditObrenovicPage : Page
     {
         private readonly TablePage _tablePage;
@@ -28,16 +39,15 @@ namespace content_management_system.Pages
                 _isEditMode = true;
                 _obrenovicZaIzmenu = obrenovicZaIzmenu;
                 PopuniFormu(obrenovicZaIzmenu);
-                btnAdd.Content = "Promeni";
+                btnAdd.Content = "Change";
             }
             else
             {
-                datePickerBirth.SelectedDate = DateTime.Now;
-                btnAdd.Content = "Dodaj";
+                btnAdd.Content = "Add";
             }
 
             cbFontFamily.ItemsSource = Fonts.SystemFontFamilies;
-            cbFontFamily.SelectedItem = new FontFamily("Segoe UI");
+            cbFontFamily.SelectedItem = new FontFamily("Times New Roman");
 
             UpdateWordCount();
         }
@@ -53,6 +63,21 @@ namespace content_management_system.Pages
             {
                 _selectedImagePath = dialog.FileName;
                 imgPreview.Source = new BitmapImage(new Uri(_selectedImagePath));
+            }
+        }
+
+        private void TxtBirthYear_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(txtBirthYear.Text, out int birthYear))
+            {
+                if (birthYear < 1700 || birthYear > DateTime.Now.Year)
+                {
+                    MessageBox.Show("Unesite validnu godinu rodjenja.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else if (!string.IsNullOrWhiteSpace(txtBirthYear.Text))
+            {
+                MessageBox.Show("Unesite samo brojeve.", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -102,20 +127,19 @@ namespace content_management_system.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text) || !datePickerBirth.SelectedDate.HasValue)
+            if (string.IsNullOrWhiteSpace(txtName.Text) || !int.TryParse(txtBirthYear.Text, out int birthYear))
             {
                 MessageBox.Show("Molimo popunite sva obavezna polja.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             string name = txtName.Text.Trim();
-            int birthYear = datePickerBirth.SelectedDate.Value.Year;
 
             string rtfDirectory = "TextFiles";
             Directory.CreateDirectory(rtfDirectory);
             string formattedName = name.ToLower().Replace(" ", "_");
             string rtfFileName = $"{formattedName}.rtf";
-            string rtfFullPath = Path.Combine(rtfDirectory, rtfFileName);
+            string rtfFullPath = System.IO.Path.Combine(rtfDirectory, rtfFileName);
 
             using (FileStream fs = new FileStream(rtfFullPath, FileMode.Create))
             {
@@ -161,7 +185,7 @@ namespace content_management_system.Pages
         private void PopuniFormu(Obrenovic o)
         {
             txtName.Text = o.Name;
-            datePickerBirth.SelectedDate = new DateTime(o.DateOfBirth, 1, 1);
+            txtBirthYear.Text = o.DateOfBirth.ToString();
 
             if (!string.IsNullOrWhiteSpace(o.ImgPath) && File.Exists(o.ImgPath))
             {

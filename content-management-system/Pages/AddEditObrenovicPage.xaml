@@ -2,71 +2,227 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:content_management_system.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" 
+      d:DesignWidth="800"
       Title="AddEditObrenovicPage">
 
-    <Grid Margin="10">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel 
-            Orientation="Horizontal" 
-            Margin="0,0,0,10">
-            <TextBlock 
-                Text="Ime:" 
-                Width="100" 
-                VerticalAlignment="Center"/>
-            <TextBox 
-                x:Name="txtName" 
-                Width="300" />
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,10">
-            <TextBlock Text="Datum rođenja:" Width="100" VerticalAlignment="Center"/>
-            <DatePicker x:Name="datePickerBirth" Width="200"/>
-        </StackPanel>
+        <TextBlock
+            Text="ADD"
+            Grid.Row="0"
+            Grid.Column="1"
+            Foreground="#C9B037"
+            FontFamily="Agency FB"
+            FontSize="40"
+            FontWeight="Bold"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Bottom"/>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,10">
-            <Image x:Name="imgPreview" Width="150" Height="150" Stretch="Uniform"/>
-            <Button Content="Izaberi sliku" Width="120" Height="30" Margin="10,0,0,0" Click="BtnBrowse_Click"/>
-        </StackPanel>
+        <TextBlock 
+            Text="Name:"
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="40,0,20,5"
+            Foreground="#C9B037"
+            FontFamily="Agency FB"
+            FontSize="22"
+            FontWeight="Bold"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"/>
+        
+        <TextBox 
+            x:Name="txtName"
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="300"
+            Height="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="16"
+            FontFamily="Times New Roman"
+            Background="#F0E9D5" 
+            Foreground="#2F2F2F" 
+            BorderBrush="#C9B037" 
+            BorderThickness="2"/>
+            
+        <TextBlock 
+            Text="Year of Birth:"
+            Grid.Row="2"
+            Grid.Column="0"
+            Margin="40,0,20,5"
+            Foreground="#C9B037"
+            FontFamily="Agency FB"
+            FontSize="22"
+            FontWeight="Bold"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"/>
+        
+        <TextBox 
+            x:Name="txtBirthYear" 
+            Grid.Row="2"
+            Grid.Column="1"
+            Width="300"
+            Height="25"
+            MaxLength="4" 
+            FontSize="16"
+            FontFamily="Times New Roman" 
+            Background="#F0E9D5" 
+            Foreground="#2F2F2F" 
+            BorderBrush="#C9B037"
+            BorderThickness="2" 
+            InputScope="Number"
+            TextChanged="TxtBirthYear_TextChanged"/>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,10">
-            <TextBlock Text="Boja teksta:" VerticalAlignment="Center" Margin="0,0,10,0"/>
-            <xctk:ColorPicker x:Name="colorPickerText" Width="150" SelectedColorChanged="ColorPickerText_SelectedColorChanged"/>
-        </StackPanel>
+        <Image 
+            x:Name="imgPreview" 
+            Grid.Row="2"
+            Grid.Column="2"
+            Grid.RowSpan="4"
+            Width="150" 
+            Height="150" 
+            Stretch="Uniform"/>
+        
+        <Button 
+            Grid.Row="1"
+            Grid.Column="2"
+            Content="Choose picture" 
+            Width="150"
+            Height="40" 
+            Margin="10,0,0,0" 
+            Background="#800000" 
+            Foreground="#F5F5DC" 
+            BorderBrush="#C9B037" 
+            BorderThickness="1" 
+            Cursor="Hand"
+            FontFamily="Agency FB" 
+            FontSize="22"
+            Click="BtnBrowse_Click"/>
 
-        <DockPanel Grid.Row="4">
-            <ToolBar DockPanel.Dock="Top">
-                <ToggleButton Command="EditingCommands.ToggleBold" ToolTip="Bold">B</ToggleButton>
-                <ToggleButton Command="EditingCommands.ToggleItalic" ToolTip="Italic">I</ToggleButton>
-                <ToggleButton Command="EditingCommands.ToggleUnderline" ToolTip="Underline">U</ToggleButton>
+        <TextBlock 
+            Text="Color:" 
+            Grid.Row="3"
+            Grid.Column="0"
+            Margin="40,0,20,5"
+            Foreground="#C9B037"
+            FontFamily="Agency FB"
+            FontSize="22"
+            FontWeight="Bold"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"/>
+        
+        <xctk:ColorPicker 
+            x:Name="colorPickerText" 
+            Grid.Row="3"
+            Grid.Column="1"
+            Width="300"
+            Height="25"
+            Background="#F0E9D5"
+            BorderBrush="#C9B037"
+            BorderThickness="2"
+            SelectedColorChanged="ColorPickerText_SelectedColorChanged"/>
 
-                <ComboBox 
-                    Width="150" 
+        <TextBlock 
+            Text="Description:" 
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.RowSpan="2"
+            Width="100" 
+            Margin="40,0,20,5"
+            Foreground="#C9B037"
+            FontFamily="Agency FB"
+            FontSize="22"
+            FontWeight="Bold"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"/>
+
+        <DockPanel 
+            Grid.Row="4"
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            Height="120"
+            Width="300">
+            <ToolBar 
+                DockPanel.Dock="Top" 
+                Background="#F0E9D5" 
+                BorderBrush="#C9B037" 
+                BorderThickness="1">
+                <ToggleButton 
+                    Command="EditingCommands.ToggleBold" 
+                    ToolTip="Bold"
+                    Content="𝗕"
+                    FontSize="16"
+                    Background="#F0E9D5"
+                    Foreground="#2F2F2F"
+                    Width="15"/>
+
+                <ToggleButton 
+                    Command="EditingCommands.ToggleItalic" 
+                    ToolTip="Italic"
+                    Content="𝘐"
+                    FontSize="16"
+                    Background="#F0E9D5"
+                    Foreground="#2F2F2F"
+                    Width="15"/>
+
+                <ToggleButton 
+                    Command="EditingCommands.ToggleUnderline" 
+                    ToolTip="Underline"
+                    Content="U̲"
+                    FontSize="16"
+                    Background="#F0E9D5"
+                    Foreground="#2F2F2F"
+                    Width="15"/>
+                <ComboBox
+                    x:Name="cbFontFamily" 
+                    Width="150"
                     Margin="10,0,0,0"
-                    x:Name="cbFontFamily"
+                    Background="#F0E9D5"
+                    Foreground="#2F2F2F"
+                    BorderBrush="#C9B037"
+                    BorderThickness="1"
+                    FontFamily="Times New Roman"
+                    FontSize="14"
                     SelectionChanged="CbFontFamily_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding}" FontFamily="{Binding}"/>
+                            <TextBlock 
+                                Text="{Binding}" 
+                                FontFamily="{Binding}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
 
-                <ComboBox Width="60" Margin="5,0,0,0"
-                          x:Name="cbFontSize"
-                          SelectionChanged="CbFontSize_SelectionChanged">
+                <ComboBox 
+                    x:Name="cbFontSize" 
+                    Width="50" 
+                    Margin="5,0,0,0"
+                    Background="#F0E9D5"
+                    Foreground="#2F2F2F"
+                    BorderBrush="#C9B037"
+                    BorderThickness="1"
+                    FontFamily="Times New Roman"
+                    FontSize="14"
+                    SelectionChanged="CbFontSize_SelectionChanged">
                     <ComboBoxItem Content="10"/>
                     <ComboBoxItem Content="12"/>
                     <ComboBoxItem Content="14"/>
@@ -80,13 +236,64 @@
                     <ComboBoxItem Content="48"/>
                 </ComboBox>
             </ToolBar>
-            <RichTextBox x:Name="rtbDescription" KeyUp="RtbDescription_KeyUp" />
+
+            <RichTextBox 
+                x:Name="rtbDescription" 
+                KeyUp="RtbDescription_KeyUp"
+                Background="#F0E9D5"
+                Foreground="#2F2F2F"
+                BorderBrush="#C9B037"
+                BorderThickness="2"
+                FontFamily="Times New Roman"
+                FontSize="14"/>
         </DockPanel>
 
-        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Label x:Name="lblWordCount" Content="Broj reči: 0" Margin="0,0,20,0"/>
-            <Button x:Name="btnAdd" Content="Dodaj" Width="100" Click="BtnAdd_Click"/>
-            <Button x:Name="btnOtkazi" Content="Otkaži" Width="100" Margin="10,0,0,0" Click="BtnCancel_Click"/>
-        </StackPanel>
+        <Label 
+            x:Name="lblWordCount" 
+            Grid.Row="6"
+            Grid.Column="1"
+            Content="Number of words: 0" 
+            Foreground="#C9B037"
+            FontFamily="Agency FB"
+            FontSize="22"
+            FontWeight="Bold"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+
+        <Button 
+            x:Name="btnAdd" 
+            Grid.Row="6"
+            Grid.Column="2"
+            Content="Add"
+            Margin="40,15,10,5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Width="100"
+            Background="#800000" 
+            Foreground="#F5F5DC"
+            BorderBrush="#C9B037" 
+            BorderThickness="1" 
+            Cursor="Hand"
+            FontFamily="Agency FB" 
+            FontSize="22"
+            Click="BtnAdd_Click"/>
+        
+        <Button
+            x:Name="btnOtkazi"
+            Grid.Row="6"
+            Grid.Column="2"
+            Content="Cancel" 
+            Width="100" 
+            Margin="10,15,40,5"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Background="#800000"
+            Foreground="#F5F5DC"
+            BorderBrush="#C9B037" 
+            BorderThickness="1"
+            Cursor="Hand"
+            FontFamily="Agency FB" 
+            FontSize="22" 
+            Click="BtnCancel_Click"/>
     </Grid>
 </Page>
