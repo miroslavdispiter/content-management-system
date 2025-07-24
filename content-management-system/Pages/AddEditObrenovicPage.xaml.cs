@@ -153,19 +153,58 @@ namespace content_management_system.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtName.Text) || !int.TryParse(txtBirthYear.Text, out int birthYear))
-            {
-                mainWindow.ShowToastNotification(new ToastNotification("Warning", "Please fill in all blank fields.", NotificationType.Warning));
-                return;
-            }
+            NameError.Text = "";
+            YearOfBirthError.Text = "";
 
-            if (birthYear < 1700 || birthYear > DateTime.Now.Year)
-            {
-                mainWindow.ShowToastNotification(new ToastNotification("Error", "Please enter a valid year of birth (1700 - " + DateTime.Now.Year + ").", NotificationType.Error));
-                return;
-            }
+            bool isValid = true;
 
             string name = txtName.Text.Trim();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                NameError.Text = "Name is required.";
+                isValid = false;
+            }
+
+            string birthYearText = txtBirthYear.Text.Trim();
+            int birthYear = 0;
+
+            if (string.IsNullOrWhiteSpace(birthYearText))
+            {
+                YearOfBirthError.Text = "Year of birth is required.";
+                isValid = false;
+            }
+            else if (!int.TryParse(birthYearText, out birthYear))
+            {
+                YearOfBirthError.Text = "Year must be a number.";
+                isValid = false;
+            }
+            else if (birthYear < 1700 || birthYear > DateTime.Now.Year)
+            {
+                YearOfBirthError.Text = $"Enter a valid year between 1700 and {DateTime.Now.Year}.";
+                isValid = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(_selectedImagePath))
+            {
+                mainWindow.ShowToastNotification(new ToastNotification("Error", "Please select an image.", NotificationType.Error));
+                isValid = false;
+            }
+
+            TextRange descriptionRange = new TextRange(rtbDescription.Document.ContentStart, rtbDescription.Document.ContentEnd);
+            string descriptionText = descriptionRange.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(descriptionText))
+            {
+                DescriptionError.Text = "Description is required.";
+                isValid = false;
+            }
+            else
+            {
+                DescriptionError.Text = "";
+            }
+
+            if (!isValid)
+                return;
 
             string rtfDirectory = "../../../TextFiles";
             Directory.CreateDirectory(rtfDirectory);

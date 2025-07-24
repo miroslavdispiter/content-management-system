@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace content_management_system.Pages
 {
@@ -39,22 +40,35 @@ namespace content_management_system.Pages
             string username = UsernameTextBox.Text.Trim();
             string password = PasswordBox.Password;
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrWhiteSpace(password))
+            bool isValid = true;
+
+            UsernameError.Text = "";
+            PasswordError.Text = "";
+
+            if (string.IsNullOrWhiteSpace(username))
             {
-                mainWindow.ShowToastNotification(new ToastNotification("Warning", "Please enter both username and password.", NotificationType.Warning));
-                return;
+                UsernameError.Text = "Username is required.";
+                isValid = false;
             }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                PasswordError.Text = "Password is required.";
+                isValid = false;
+            }
+
+            if (!isValid)
+                return;
 
             var user = _users.FirstOrDefault(u => u.Username == username && u.Password == password);
 
             if (user == null)
             {
-                mainWindow.ShowToastNotification(new ToastNotification("Error", "Invalid username or password.", NotificationType.Error));
+                PasswordError.Text = "Invalid username or password.";
                 return;
             }
 
             mainWindow.ShowToastNotification(new ToastNotification("Success", $"Welcome, {user.Username}!", NotificationType.Success));
-
             NavigationService?.Navigate(new TablePage(user));
         }
 

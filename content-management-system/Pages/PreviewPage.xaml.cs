@@ -25,7 +25,6 @@ namespace content_management_system.Pages
     public partial class PreviewPage : Page
     {
         private NavigationService navService;
-
         private MainWindow mainWindow;
 
         public PreviewPage(Obrenovic obrenovic, NavigationService navigationService)
@@ -40,18 +39,35 @@ namespace content_management_system.Pages
 
         private void LoadRtfDescription(string path)
         {
-            if (File.Exists(path))
+            if (!string.IsNullOrWhiteSpace(path) && File.Exists(path))
             {
                 try
                 {
-                    using FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-                    TextRange textRange = new TextRange(rtbDescription.Document.ContentStart, rtbDescription.Document.ContentEnd);
-                    textRange.Load(fileStream, DataFormats.Rtf);
+                    using FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+                    var hiddenRtb = new RichTextBox();
+                    TextRange range = new TextRange(hiddenRtb.Document.ContentStart, hiddenRtb.Document.ContentEnd);
+                    range.Load(fs, DataFormats.Rtf);
+
+                    string plainText = range.Text.Trim();
+
+                    if (string.IsNullOrWhiteSpace(plainText))
+                    {
+                        txtDescription.Text = "No description provided.";
+                    }
+                    else
+                    {
+                        txtDescription.Text = plainText;
+                    }
                 }
                 catch
                 {
+                    txtDescription.Text = "Error loading description.";
                     mainWindow.ShowToastNotification(new ToastNotification("Error", "Failed to load the description.", NotificationType.Error));
                 }
+            }
+            else
+            {
+                txtDescription.Text = "No description available.";
             }
         }
 

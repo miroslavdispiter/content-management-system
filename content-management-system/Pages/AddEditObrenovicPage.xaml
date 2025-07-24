@@ -42,7 +42,7 @@
             Text="Name:"
             Grid.Row="1"
             Grid.Column="0"
-            Margin="40,0,20,5"
+            Margin="40,0,20, 10"
             Foreground="#C9B037"
             FontFamily="Agency FB"
             FontSize="22"
@@ -54,6 +54,7 @@
             x:Name="txtName"
             Grid.Row="1"
             Grid.Column="1"
+            Margin="0,0,0,5"
             Width="300"
             Height="25"
             HorizontalAlignment="Center"
@@ -66,17 +67,41 @@
             ToolTip="Enter the full name (recommended format: Firstname Lastname)."
             BorderThickness="2"/>
 
+        <TextBlock
+            x:Name="NameError"
+            Grid.Row="1"
+            Grid.Column="1"
+            Text=""
+            Margin="16,0,0,0"
+            FontSize="16"
+            FontFamily="Agency FB"
+            Foreground="#FF0000"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"/>
+
         <TextBlock 
             Text="Year of Birth:"
             Grid.Row="2"
             Grid.Column="0"
-            Margin="40,0,20,5"
+            Margin="40,5,10,5"
             Foreground="#C9B037"
             FontFamily="Agency FB"
             FontSize="22"
             FontWeight="Bold"
             HorizontalAlignment="Left"
-            VerticalAlignment="Center"/>
+            VerticalAlignment="Top"/>
+
+        <TextBlock
+            x:Name="YearOfBirthError"
+            Grid.Row="2"
+            Grid.Column="1"
+            Text=""
+            FontSize="16"
+            Margin="16,0,0,8"
+            FontFamily="Agency FB"
+            Foreground="#FF0000"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"/>
 
         <TextBox 
             x:Name="txtBirthYear" 
@@ -86,6 +111,8 @@
             Height="25"
             MaxLength="4" 
             FontSize="16"
+            VerticalAlignment="Top"
+            Margin="0,6,0,0"
             FontFamily="Times New Roman" 
             Background="#F0E9D5" 
             Foreground="#2F2F2F" 
@@ -109,7 +136,7 @@
             Content="Choose picture" 
             Width="150"
             Height="40" 
-            Margin="10,0,0,0" 
+            Margin="10,0,0,5" 
             Background="#800000" 
             Foreground="#F5F5DC" 
             BorderBrush="#C9B037" 
@@ -144,6 +171,18 @@
             BorderThickness="2"
             ToolTip="Change the text color of the description"
             SelectedColorChanged="ColorPickerText_SelectedColorChanged"/>
+
+        <TextBlock
+            x:Name="DescriptionError"
+            Grid.Row="5"
+            Grid.Column="1"
+            Text=""
+            Margin="0,30,0,0"
+            FontSize="16"
+            FontFamily="Agency FB"
+            Foreground="#FF0000"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"/>
 
         <TextBlock 
             Text="Description:" 

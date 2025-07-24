@@ -8,134 +8,125 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PreviewPage">
 
-    <Grid Margin="10">
+    <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock
-            Text="{Binding Name}"
-            Grid.Row="0"
-            Grid.Column="1"
-            Margin="0,12,25,0"
-            Foreground="#C9B037"
-            FontSize="36" 
-            FontWeight="Bold"
-            FontFamily="Agency FB"
-            TextAlignment="Center"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
+        <StackPanel 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Margin="20">
+            <TextBlock 
+                Text="{Binding Name}" 
+                Foreground="#C9B037"
+                FontSize="36" 
+                FontWeight="Bold"
+                FontFamily="Agency FB" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center"/>
+
+            <TextBlock 
+                Text="Year of Birth:" 
+                Foreground="#C9B037" 
+                FontWeight="Bold" 
+                FontSize="24" 
+                FontFamily="Agency FB" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="0,20,0,5"/>
+
+            <TextBlock 
+                Text="{Binding DateOfBirth}" 
+                Foreground="#C9B037" 
+                FontWeight="Bold" 
+                FontSize="24" 
+                FontFamily="Agency FB" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top"/>
+
+            <TextBlock 
+                Text="Date Added:" 
+                Foreground="#C9B037" 
+                FontWeight="Bold" 
+                FontSize="24" 
+                FontFamily="Agency FB" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="0,20,0,5"/>
+
+            <TextBlock 
+                Text="{Binding DateAdded}" 
+                Foreground="#C9B037" 
+                FontWeight="Bold" 
+                FontSize="24" 
+                FontFamily="Agency FB" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top"/>
+        </StackPanel>
 
         <Image 
-            Grid.Row="1"
-            Grid.Column="1"
-            Grid.RowSpan="2"
+            x:Name="imgPreview" 
+            Grid.Row="0" 
+            Grid.Column="1" 
             Source="{Binding ImgPath}" 
-            Margin="100,0,0,0"
-            Width="350" 
-            Height="275" 
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" 
+            Stretch="Uniform" 
+            Margin="10" 
+            Width="250" 
+            Height="250"/>
+
+        <TextBlock 
+            Text="Description" 
+            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" 
+            Foreground="#C9B037" 
+            FontWeight="Bold" 
+            FontSize="28" 
+            FontFamily="Agency FB" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            Margin="0,20,0,10"/>
+
+        <TextBlock 
+            x:Name="txtDescription" 
+            Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+            Text="Loading description..." 
+            Foreground="#2F2F2F" 
+            FontFamily="Times New Roman" 
+            FontSize="16" 
+            HorizontalAlignment="Center" 
             VerticalAlignment="Top"
-            Stretch="Uniform"/>
-
-        <TextBlock
-            Text="Year of Birth:" 
-            Grid.Row="1"
-            Grid.Column="0"
-            Foreground="#C9B037"
-            FontWeight="Bold"
-            FontSize="24"
-            FontFamily="Agency FB"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Margin="0,0,100,0"/>
-        <TextBlock 
-            Text="{Binding DateOfBirth}"
-            Grid.Row="1"
-            Grid.Column="0"
-            Foreground="#C9B037"
-            FontWeight="Bold"
-            FontSize="24"
-            FontFamily="Agency FB"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Margin="75,0,0,0"/>
-
-        <TextBlock 
-            Text="Date Added:" 
-            Grid.Row="1"
-            Grid.Column="0"
-            Foreground="#C9B037"
-            FontWeight="Bold"
-            FontSize="24"
-            FontFamily="Agency FB"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Margin="0,0,115,0"/>
-        <TextBlock 
-            Text="{Binding DateAdded}"
-            Grid.Row="1"
-            Grid.Column="0"
-            Foreground="#C9B037"
-            FontWeight="Bold"
-            FontSize="24"
-            FontFamily="Agency FB"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Margin="110,0,0,0"/>
-
-        <TextBlock 
-            Text="Description:" 
-            Grid.Row="1"
-            Grid.Column="0"
-            Foreground="#C9B037"
-            FontWeight="Bold"
-            FontSize="24"
-            FontFamily="Agency FB"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            Margin="0,0,110,0"/>
-
-        <RichTextBox 
-            x:Name="rtbDescription" 
-            Grid.Row="2"
-            Grid.Column="0"
-            Width="250"
-            Height="120"
-            Margin="0,0,10,80"
-            Background="#F0E9D5"
-            Foreground="#2F2F2F"
-            BorderBrush="#C9B037"
-            BorderThickness="2"
-            FontFamily="Times New Roman"
-            FontSize="14"
-            IsReadOnly="True"
-            IsDocumentEnabled="False"/>
+            TextWrapping="Wrap" 
+            Margin="10"/>
 
         <Button 
-            Grid.Row="2"
-            Grid.ColumnSpan="2"
-            Content="Back"
+            Grid.Row="3" 
+            Grid.ColumnSpan="2" 
+            Content="Back" 
             HorizontalAlignment="Center" 
-            VerticalAlignment="Bottom"
-            Margin="0,0,0,30"
-            Width="100"
-            Height="40"
-            Background="#800000"
-            Foreground="#F5F5DC"
-            BorderBrush="#C9B037"
-            BorderThickness="1"
+            VerticalAlignment="Center" 
+            Margin="0,20,0,20" 
+            Width="100" 
+            Height="40" 
+            Background="#800000" 
+            Foreground="#F5F5DC" 
+            BorderBrush="#C9B037" 
+            BorderThickness="1" 
             Cursor="Hand"
-            FontFamily="Agency FB"
-            FontSize="22"
-            ToolTip="Return to the previous page"
+            FontFamily="Agency FB" 
+            FontSize="22" 
+            ToolTip="Return to the previous page" 
             Click="Back_Click"/>
     </Grid>
 </Page>
