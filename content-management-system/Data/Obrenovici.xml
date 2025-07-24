@@ -4,7 +4,7 @@
     <Name>Miloš Obrenović</Name>
     <DateOfBirth>1780</DateOfBirth>
     <ImgPath>../../../Images/milos_obrenovic.jpg</ImgPath>
-    <RtfPath>../../../TextFiles/milos_obrenovic.rtf</RtfPath>
+    <RtfPath>../../../TextFiles\miloš_obrenović.rtf</RtfPath>
     <DateAdded>22-07-2025</DateAdded>
     <IsSelected>false</IsSelected>
   </Obrenovic>
@@ -22,14 +22,6 @@
     <ImgPath>../../../Images/milan_obrenovic.jpg</ImgPath>
     <RtfPath>../../../TextFiles/milan_obrenovic.rtf</RtfPath>
     <DateAdded>22-07-2025</DateAdded>
-    <IsSelected>false</IsSelected>
-  </Obrenovic>
-  <Obrenovic>
-    <Name>Miroslav Obrenovic</Name>
-    <DateOfBirth>1815</DateOfBirth>
-    <ImgPath>C:\Users\miros\Documents\CV's\cv - final pic.jpg</ImgPath>
-    <RtfPath>../../../TextFiles\miroslav_obrenovic.rtf</RtfPath>
-    <DateAdded>24-07-2025</DateAdded>
     <IsSelected>false</IsSelected>
   </Obrenovic>
 </ArrayOfObrenovic>

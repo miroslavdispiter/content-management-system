@@ -39,21 +39,21 @@
             MaxItems="3" 
             Position="TopRight"/>
 
-        <Image Source="../../Images/shield1.png"
+        <Image Source="Images/shield1.png"
                Width="55" Height="50"
                Canvas.Left="490"
                Canvas.Top="40" 
                HorizontalAlignment="Left" 
                VerticalAlignment="Top"/>
 
-        <Image Source="../../Images/shield2.png"
+        <Image Source="Images/shield2.png"
                Width="55" Height="50"
                Canvas.Left="358" 
                Canvas.Top="40"
                HorizontalAlignment="Left" 
                VerticalAlignment="Top"/>
 
-        <Image Source="../../Images/shieldxy-removebg-preview.png"
+        <Image Source="Images/shieldxy-removebg-preview.png"
                Width="95" Height="70"
                Canvas.Left="424"
                Canvas.Top="32"

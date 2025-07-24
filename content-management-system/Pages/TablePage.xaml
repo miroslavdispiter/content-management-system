@@ -70,6 +70,7 @@
                             Content="✓"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
+                            Cursor="Hand"
                             Click="SelectAllCheckBox_Click" />
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
@@ -78,6 +79,7 @@
                                 IsChecked="{Binding IsSelected, Mode=TwoWay}"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
+                                Cursor="Hand"
                                 Click="RowCheckBox_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -170,7 +172,8 @@
                 Cursor="Hand"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Visibility="Hidden">
+                Visibility="Hidden"
+                ToolTip="Add a new dynasty member">
             </Button>
 
             <Button
@@ -189,7 +192,8 @@
                 Cursor="Hand"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Visibility="Hidden">
+                Visibility="Hidden"
+                ToolTip="Delete selected dynasty members">
             </Button>
 
             <Button
@@ -207,7 +211,8 @@
                 FontSize="22"
                 Cursor="Hand"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center"
+                ToolTip="Log out the current user">
             </Button>
         </StackPanel>
     </Grid>

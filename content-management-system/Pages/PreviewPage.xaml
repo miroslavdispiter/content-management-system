@@ -135,6 +135,7 @@
             Cursor="Hand"
             FontFamily="Agency FB"
             FontSize="22"
+            ToolTip="Return to the previous page"
             Click="Back_Click"/>
     </Grid>
 </Page>

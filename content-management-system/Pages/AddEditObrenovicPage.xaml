@@ -49,7 +49,7 @@
             FontWeight="Bold"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"/>
-        
+
         <TextBox 
             x:Name="txtName"
             Grid.Row="1"
@@ -62,9 +62,10 @@
             FontFamily="Times New Roman"
             Background="#F0E9D5" 
             Foreground="#2F2F2F" 
-            BorderBrush="#C9B037" 
+            BorderBrush="#C9B037"
+            ToolTip="Enter the full name (recommended format: Firstname Lastname)."
             BorderThickness="2"/>
-            
+
         <TextBlock 
             Text="Year of Birth:"
             Grid.Row="2"
@@ -76,7 +77,7 @@
             FontWeight="Bold"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"/>
-        
+
         <TextBox 
             x:Name="txtBirthYear" 
             Grid.Row="2"
@@ -90,6 +91,7 @@
             Foreground="#2F2F2F" 
             BorderBrush="#C9B037"
             BorderThickness="2" 
+            ToolTip="Enter the year of birth using four digits (e.g. 1860)."
             InputScope="Number"/>
 
         <Image 
@@ -100,7 +102,7 @@
             Width="150" 
             Height="150" 
             Stretch="Uniform"/>
-        
+
         <Button 
             Grid.Row="1"
             Grid.Column="2"
@@ -115,11 +117,12 @@
             Cursor="Hand"
             FontFamily="Agency FB" 
             FontSize="22"
+            ToolTip="Select an image to represent the dynasty member"
             Click="BtnBrowse_Click"/>
 
         <TextBlock 
-            Text="Color:" 
-            Grid.Row="3"
+            Text="" 
+            Grid.Row="5"
             Grid.Column="0"
             Margin="40,0,20,5"
             Foreground="#C9B037"
@@ -128,21 +131,23 @@
             FontWeight="Bold"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"/>
-        
+
         <xctk:ColorPicker 
             x:Name="colorPickerText" 
-            Grid.Row="3"
+            Grid.Row="5"
             Grid.Column="1"
-            Width="300"
-            Height="25"
+            Width="150"
+            Height="23"
+            VerticalAlignment="Top"
             Background="#F0E9D5"
             BorderBrush="#C9B037"
             BorderThickness="2"
+            ToolTip="Change the text color of the description"
             SelectedColorChanged="ColorPickerText_SelectedColorChanged"/>
 
         <TextBlock 
             Text="Description:" 
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="0"
             Grid.RowSpan="2"
             Width="100" 
@@ -155,7 +160,7 @@
             VerticalAlignment="Center"/>
 
         <DockPanel 
-            Grid.Row="4"
+            Grid.Row="3"
             Grid.Column="1"
             Grid.RowSpan="2"
             Height="120"
@@ -167,12 +172,13 @@
                 BorderThickness="1">
                 <ToggleButton 
                     Command="EditingCommands.ToggleBold" 
-                    ToolTip="Bold"
                     Content="𝗕"
                     FontSize="16"
                     Background="#F0E9D5"
                     Foreground="#2F2F2F"
-                    Width="15"/>
+                    Width="15"
+                    ToolTip="Bold"
+                    Click="BoldButton_Click"/>
 
                 <ToggleButton 
                     Command="EditingCommands.ToggleItalic" 
@@ -181,7 +187,8 @@
                     FontSize="16"
                     Background="#F0E9D5"
                     Foreground="#2F2F2F"
-                    Width="15"/>
+                    Width="15"
+                    Click="ItalicButton_Click"/>
 
                 <ToggleButton 
                     Command="EditingCommands.ToggleUnderline" 
@@ -190,7 +197,8 @@
                     FontSize="16"
                     Background="#F0E9D5"
                     Foreground="#2F2F2F"
-                    Width="15"/>
+                    Width="15"
+                    Click="UnderlineButton_Click"/>
                 <ComboBox
                     x:Name="cbFontFamily" 
                     Width="150"
@@ -201,6 +209,7 @@
                     BorderThickness="1"
                     FontFamily="Times New Roman"
                     FontSize="14"
+                    ToolTip="Select font family for the description"
                     SelectionChanged="CbFontFamily_SelectionChanged">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -221,6 +230,7 @@
                     BorderThickness="1"
                     FontFamily="Times New Roman"
                     FontSize="14"
+                    ToolTip="Select font size for the description"
                     SelectionChanged="CbFontSize_SelectionChanged">
                     <ComboBoxItem Content="10"/>
                     <ComboBoxItem Content="12"/>
@@ -244,6 +254,7 @@
                 BorderBrush="#C9B037"
                 BorderThickness="2"
                 FontFamily="Times New Roman"
+                ToolTip="Enter a detailed description. You can format the text using the toolbar above."
                 FontSize="14"/>
         </DockPanel>
 
@@ -275,10 +286,11 @@
             Cursor="Hand"
             FontFamily="Agency FB" 
             FontSize="22"
+            ToolTip="Save the entered dynasty member data"
             Click="BtnAdd_Click"/>
-        
+
         <Button
-            x:Name="btnOtkazi"
+            x:Name="btnCancel"
             Grid.Row="6"
             Grid.Column="2"
             Content="Cancel" 
@@ -293,6 +305,7 @@
             Cursor="Hand"
             FontFamily="Agency FB" 
             FontSize="22" 
+            ToolTip="Cancel and return to the list"
             Click="BtnCancel_Click"/>
     </Grid>
 </Page>

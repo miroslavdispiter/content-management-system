@@ -35,7 +35,7 @@ namespace content_management_system
 
             if (!File.Exists(xmlPath))
             {
-                MessageBox.Show($"XML fajl nije pronadjen: {xmlPath}", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowToastNotification(new ToastNotification("Error", $"XML file not found: {xmlPath}", NotificationType.Error));
                 Obrenovici = new ObservableCollection<Obrenovic>();
                 return;
             }

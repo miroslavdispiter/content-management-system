@@ -1,4 +1,6 @@
-﻿using content_management_system.Models;
+﻿using content_management_system.Helpers;
+using content_management_system.Models;
+using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,9 +26,12 @@ namespace content_management_system.Pages
     {
         private NavigationService navService;
 
+        private MainWindow mainWindow;
+
         public PreviewPage(Obrenovic obrenovic, NavigationService navigationService)
         {
             InitializeComponent();
+            mainWindow = (MainWindow)Application.Current.MainWindow;
             this.DataContext = obrenovic;
             this.navService = navigationService;
 
@@ -45,7 +50,7 @@ namespace content_management_system.Pages
                 }
                 catch
                 {
-                    MessageBox.Show("Failed to load the description.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    mainWindow.ShowToastNotification(new ToastNotification("Error", "Failed to load the description.", NotificationType.Error));
                 }
             }
         }

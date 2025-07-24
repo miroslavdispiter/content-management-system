@@ -66,7 +66,8 @@
             Foreground="#2F2F2F"
             BorderBrush="#C9B037"
             BorderThickness="2"
-            VerticalContentAlignment="Center">
+            VerticalContentAlignment="Center"
+            ToolTip="">
         </TextBox>
 
         <TextBlock
@@ -132,7 +133,7 @@
             FontFamily="Agency FB"
             FontSize="22"
             Click="Login_Click"
-            />
+            ToolTip="Log in to access the content management system"/>
 
         <Button
             Content="Exit"
@@ -150,6 +151,7 @@
             Cursor="Hand"
             FontFamily="Agency FB"
             FontSize="22"
-            Click="Exit_Click"/>
+            Click="Exit_Click"
+            ToolTip="Close the application"/>
     </Grid>
 </Page>

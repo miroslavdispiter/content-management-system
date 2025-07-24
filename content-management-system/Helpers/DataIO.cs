@@ -66,7 +66,6 @@ namespace content_management_system.Helpers
             catch (Exception ex)
             {
                 //Log exception here
-                MessageBox.Show($"Greška pri učitavanju korisnika: {ex.Message}");
             }
 
             return objectOut;

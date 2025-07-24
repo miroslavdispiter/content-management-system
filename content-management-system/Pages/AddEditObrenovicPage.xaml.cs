@@ -1,5 +1,7 @@
-﻿using content_management_system.Models;
+﻿using content_management_system.Helpers;
+using content_management_system.Models;
 using Microsoft.Win32;
+using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,21 +26,24 @@ namespace content_management_system.Pages
     public partial class AddEditObrenovicPage : Page
     {
         private readonly TablePage _tablePage;
-        private readonly Obrenovic _obrenovicZaIzmenu;
+        private readonly Obrenovic _obrenovicEdit;
         private readonly bool _isEditMode;
+        private readonly MainWindow mainWindow;
+        bool isInitializing = true;
 
         private string _selectedImagePath = string.Empty;
 
-        public AddEditObrenovicPage(TablePage tablePage, Obrenovic obrenovicZaIzmenu = null)
+        public AddEditObrenovicPage(TablePage tablePage, Obrenovic obrenovicEdit = null)
         {
             InitializeComponent();
             _tablePage = tablePage;
+            mainWindow = (MainWindow)Application.Current.MainWindow;
 
-            if (obrenovicZaIzmenu != null)
+            if (obrenovicEdit != null)
             {
                 _isEditMode = true;
-                _obrenovicZaIzmenu = obrenovicZaIzmenu;
-                PopuniFormu(obrenovicZaIzmenu);
+                _obrenovicEdit = obrenovicEdit;
+                PopuniFormu(obrenovicEdit);
                 btnAdd.Content = "Change";
             }
             else
@@ -48,6 +53,10 @@ namespace content_management_system.Pages
 
             cbFontFamily.ItemsSource = Fonts.SystemFontFamilies;
             cbFontFamily.SelectedItem = new FontFamily("Times New Roman");
+            cbFontSize.SelectedItem = cbFontSize.Items.OfType<ComboBoxItem>().FirstOrDefault(item => item.Content.ToString() == "14");
+            colorPickerText.SelectedColor = Colors.Black;
+
+            isInitializing = false;
 
             UpdateWordCount();
         }
@@ -66,32 +75,30 @@ namespace content_management_system.Pages
             }
         }
 
-        /*private void TxtBirthYear_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (int.TryParse(txtBirthYear.Text, out int birthYear))
-            {
-                if (birthYear < 1700 || birthYear > DateTime.Now.Year)
-                {
-                    MessageBox.Show("Unesite validnu godinu rodjenja.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else if (!string.IsNullOrWhiteSpace(txtBirthYear.Text))
-            {
-                MessageBox.Show("Unesite samo brojeve.", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }*/
-
         private void ColorPickerText_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
+            if (isInitializing) return;
+
             if (colorPickerText.SelectedColor.HasValue)
             {
-                TextRange range = new TextRange(rtbDescription.Document.ContentStart, rtbDescription.Document.ContentEnd);
-                range.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(colorPickerText.SelectedColor.Value));
+                var selection = rtbDescription.Selection;
+
+                if (!selection.IsEmpty)
+                {
+                    selection.ApplyPropertyValue(TextElement.ForegroundProperty, new SolidColorBrush(colorPickerText.SelectedColor.Value));
+                    mainWindow.ShowToastNotification(new ToastNotification("Success", "You have successfully changed the selected text color.", NotificationType.Success));
+                }
+                else
+                {
+                    mainWindow.ShowToastNotification(new ToastNotification("Information", "Please select some text before applying color.", NotificationType.Information));
+                }
             }
         }
 
         private void CbFontFamily_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (isInitializing) return;
+
             if (cbFontFamily.SelectedItem != null)
             {
                 FontFamily selectedFont = cbFontFamily.SelectedItem as FontFamily;
@@ -99,17 +106,36 @@ namespace content_management_system.Pages
                 {
                     TextRange range = new TextRange(rtbDescription.Selection.Start, rtbDescription.Selection.End);
                     range.ApplyPropertyValue(TextElement.FontFamilyProperty, selectedFont);
+                    mainWindow.ShowToastNotification(new ToastNotification("Success", $"Selected font: {selectedFont.Source} has been applied.", NotificationType.Success));
                 }
             }
         }
 
         private void CbFontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (isInitializing) return;
+
             if (cbFontSize.SelectedItem is ComboBoxItem item && double.TryParse(item.Content.ToString(), out double size))
             {
                 TextRange range = new TextRange(rtbDescription.Selection.Start, rtbDescription.Selection.End);
                 range.ApplyPropertyValue(TextElement.FontSizeProperty, size);
+                mainWindow.ShowToastNotification(new ToastNotification("Success", $"Font size set to {size}.", NotificationType.Success));
             }
+        }
+
+        private void BoldButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ShowToastNotification(new ToastNotification("Success", "Bold applied to selected text.", NotificationType.Success));
+        }
+
+        private void ItalicButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ShowToastNotification(new ToastNotification("Success", "Italic applied to selected text.", NotificationType.Success));
+        }
+
+        private void UnderlineButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ShowToastNotification(new ToastNotification("Success", "Underline applied to selected text.", NotificationType.Success));
         }
 
         private void RtbDescription_KeyUp(object sender, KeyEventArgs e)
@@ -122,20 +148,20 @@ namespace content_management_system.Pages
             TextRange range = new TextRange(rtbDescription.Document.ContentStart, rtbDescription.Document.ContentEnd);
             string text = range.Text.Trim();
             int wordCount = string.IsNullOrWhiteSpace(text) ? 0 : text.Split(new[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries).Length;
-            lblWordCount.Content = $"Broj reči: {wordCount}";
+            lblWordCount.Content = $"Number of Words: {wordCount}";
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text) || !int.TryParse(txtBirthYear.Text, out int birthYear))
             {
-                MessageBox.Show("Molimo popunite sva obavezna polja.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                mainWindow.ShowToastNotification(new ToastNotification("Warning", "Please fill in all blank fields.", NotificationType.Warning));
                 return;
             }
 
             if (birthYear < 1700 || birthYear > DateTime.Now.Year)
             {
-                MessageBox.Show("Unesite validnu godinu rođenja (1700 - " + DateTime.Now.Year + ").", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                mainWindow.ShowToastNotification(new ToastNotification("Error", "Please enter a valid year of birth (1700 - " + DateTime.Now.Year + ").", NotificationType.Error));
                 return;
             }
 
@@ -155,30 +181,31 @@ namespace content_management_system.Pages
 
             if (_isEditMode)
             {
-                _obrenovicZaIzmenu.Name = name;
-                _obrenovicZaIzmenu.DateOfBirth = birthYear;
-                _obrenovicZaIzmenu.RtfPath = rtfFullPath;
+                _obrenovicEdit.Name = name;
+                _obrenovicEdit.DateOfBirth = birthYear;
+                _obrenovicEdit.RtfPath = rtfFullPath;
                 if (!string.IsNullOrWhiteSpace(_selectedImagePath))
                 {
-                    _obrenovicZaIzmenu.ImgPath = _selectedImagePath;
+                    _obrenovicEdit.ImgPath = _selectedImagePath;
                 }
                 else
                 {
-                    MessageBox.Show("Unesite sliku.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    mainWindow.ShowToastNotification(new ToastNotification("Warning", "Please select an image.", NotificationType.Warning));
                     return;
                 }
 
+                mainWindow.ShowToastNotification(new ToastNotification("Success", "Member successfully updated.", NotificationType.Success));
                 _tablePage.SaveDataToXml();
             }
             else
             {
                 if (string.IsNullOrWhiteSpace(_selectedImagePath))
                 {
-                    MessageBox.Show("Molimo izaberite sliku.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    mainWindow.ShowToastNotification(new ToastNotification("Warning", "Please select an image.", NotificationType.Warning));
                     return;
                 }
 
-                Obrenovic novi = new Obrenovic
+                Obrenovic newO = new Obrenovic
                 {
                     Name = name,
                     DateOfBirth = birthYear,
@@ -186,7 +213,8 @@ namespace content_management_system.Pages
                     RtfPath = rtfFullPath
                 };
 
-                _tablePage.Obrenovici.Add(novi);
+                 mainWindow.ShowToastNotification(new ToastNotification("Success", "New member successfully added.", NotificationType.Success));
+                _tablePage.Obrenovici.Add(newO);
                 _tablePage.SaveDataToXml();
             }
 

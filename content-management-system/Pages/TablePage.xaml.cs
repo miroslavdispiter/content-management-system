@@ -1,5 +1,6 @@
 ﻿using content_management_system.Helpers;
 using content_management_system.Models;
+using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,6 +31,11 @@ namespace content_management_system.Pages
                 btn_Add.Visibility = Visibility.Visible;
                 btn_Delete.Visibility = Visibility.Visible;
             }
+            else
+            {
+                SelectColumn.Visibility = Visibility.Collapsed;
+            }
+
             mainWindow = (MainWindow)Application.Current.MainWindow;
             Obrenovici = mainWindow.Obrenovici;
             this.DataContext = this;
@@ -54,8 +60,7 @@ namespace content_management_system.Pages
             
             if (itemsToDelete.Count == 0)
             {
-                MessageBox.Show("Nijedan član dinastije nije selektovan za brisanje.", "Upozorenje", MessageBoxButton.OK, MessageBoxImage.Warning);
-                
+                mainWindow.ShowToastNotification(new ToastNotification("Warning", "No members of the dynasty were selected for deletion.", NotificationType.Warning));
                 return;
             }
 
@@ -66,13 +71,11 @@ namespace content_management_system.Pages
                 foreach (var item in itemsToDelete)
                 {
                     Obrenovici.Remove(item);
-                    // Treba mi samo dodati i brisanje rtf fajla + slike?
                 }
 
                 SaveDataToXml();
                 ObrenoviciDataGrid.Items.Refresh();
-                MessageBox.Show("Uspešno obrisani selektovani članovi.", "Obaveštenje", MessageBoxButton.OK, MessageBoxImage.Information);
-                //Ovde staviti toast notification
+                mainWindow.ShowToastNotification(new ToastNotification("Success", "Successfully deleted selected members.", NotificationType.Success));
             }
         }
 
@@ -129,6 +132,8 @@ namespace content_management_system.Pages
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.Logout();
+            mainWindow.ShowToastNotification(new ToastNotification("Success", "Successfully logged out.", NotificationType.Success));
+
         }
     }
 }

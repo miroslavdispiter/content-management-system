@@ -1,5 +1,6 @@
 ﻿using content_management_system.Helpers;
 using content_management_system.Models;
+using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,9 +16,13 @@ namespace content_management_system.Pages
     public partial class LoginPage : Page
     {
         private List<User> _users;
+
+        private MainWindow mainWindow;
+
         public LoginPage()
         {
             InitializeComponent();
+            mainWindow = (MainWindow)Application.Current.MainWindow;
             LoadUsers();
         }
 
@@ -36,7 +41,7 @@ namespace content_management_system.Pages
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Unesite i korisničko ime i lozinku.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
+                mainWindow.ShowToastNotification(new ToastNotification("Warning", "Please enter both username and password.", NotificationType.Warning));
                 return;
             }
 
@@ -44,9 +49,11 @@ namespace content_management_system.Pages
 
             if (user == null)
             {
-                MessageBox.Show("Pogrešno korisničko ime ili lozinka.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                mainWindow.ShowToastNotification(new ToastNotification("Error", "Invalid username or password.", NotificationType.Error));
                 return;
             }
+
+            mainWindow.ShowToastNotification(new ToastNotification("Success", $"Welcome, {user.Username}!", NotificationType.Success));
 
             NavigationService?.Navigate(new TablePage(user));
         }
